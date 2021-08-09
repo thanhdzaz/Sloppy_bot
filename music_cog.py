@@ -1,6 +1,8 @@
 import discord
+from gtts import gTTS
 from discord.ext import commands
 import time
+import os
 
 from youtube_dl import YoutubeDL
 
@@ -126,19 +128,42 @@ class music_cog(commands.Cog):
             self.vc.resume()
             #try to play next in the queue if it exists
             # await self.play_music()
-    @commands.command(name="dc", help="Next bài")
+    @commands.command(name="ra", help="Next bài")
     async def leave(self,ctx):
+        emoji = discord.utils.get(ctx.guild.emojis, name="Scare")
+        await ctx.message.add_reaction(emoji)
         await ctx.voice_client.disconnect()
-    @commands.command(name="join", help="Next bài")
+    @commands.command(name="vao", help="Next bài")
     async def join(self,ctx):
         channel = ctx.author.voice.channel
-        await channel.connect()
+        emoji = discord.utils.get(ctx.guild.emojis, name="meo")
+        await ctx.message.add_reaction(emoji)
+        self.vc = await channel.connect()
 
     @commands.command(name='noi',pass_context=True)
     async def devl(self,ctx, *, request):
         channel = ctx.author.voice.channel
-        voice = await channel.connect()
-        voice.play(discord.FFmpegPCMAudio(f"./music/{request}.mp3"), after=lambda e: print('done'))
-        while voice.is_playing():
-            time.sleep(2)
-        await voice.disconnect()
+        if os.path.exists(f"./music/{request}.mp3"):
+          if self.vc == "" or not self.vc.is_connected() or self.vc == None:
+              self.vc = await channel.connect()
+              self.vc.play(discord.FFmpegPCMAudio(f"./music/{request}.mp3"), after=lambda e: print('done'))
+          else:
+              await self.vc.play(discord.FFmpegPCMAudio(f"./music/{request}.mp3"), after=lambda e: print('done'))
+        elif request == '-all':
+          await ctx.send('***Danh sách***```70tuoi, ban, bopdi, camgiac, cay, devl, locc, dcm, que, tobecontinue, cekt,thamlam, ngudot, concainit, zo, votay, deo, emoi```')
+        else:
+          await ctx.send(f'{request} không tồn tại sử dụng lệnh ```>noi -all``` để nhận danh sách')
+
+
+    @commands.command(name='t',pass_context=True)
+    async def t(self,ctx, *, request):
+        global gTTS
+        speech = gTTS(text = request, lang = 'vi', slow=False)
+        speech.save('audio.mp3')
+        channel = ctx.author.voice.channel
+        if self.vc == "" or not self.vc.is_connected() or self.vc == None:
+            self.vc = await channel.connect()
+            self.vc.play(discord.FFmpegPCMAudio('audio.mp3'), after=lambda e: print('done'))
+        else:
+            await self.vc.play(discord.FFmpegPCMAudio('audio.mp3'), after=lambda e: print('done'))
+

@@ -8,12 +8,19 @@ class main_cog(commands.Cog):
 ```
 Danh sách lệnh:
 >help - Hiển thị toàn bộ command
->clear < Số lượng > - Xóa tin nhắn theo số lượng
+>clear .... - Xóa tin nhắn theo số lượng
 >avatar hiển thị avatar người được tag
+>chui - giúp bạn chửi người được tag
 Nhạc nè:
->n <keywords> - Tìm nhạc
+>n ..... - Tìm nhạc
 >ds - Danh sách nhạc
->next - nẽt bài
+>next - Next bài
+>vao - Kết nối vào voice
+>ra - Ra khỏi kênh
+Nói nè: 
+>t ....... - đọc chữ.
+>noi ....... - nói linh tinh
+
 ```
 """
         self.text_channel_list = []
@@ -45,5 +52,8 @@ Nhạc nè:
       await ctx.send('Còn sống nhăn răng nhé 🤩')
     @commands.command(nam='avatar',help='Xem avatar người gọi.')
     async def avatar(self, ctx, *,  avamember : discord.Member=None):
-      userAvatarUrl = avamember.avatar_url
+      if avamember :
+        userAvatarUrl = avamember.avatar_url
+      else:
+        userAvatarUrl = ctx.author.avatar_url
       await ctx.send(userAvatarUrl)
