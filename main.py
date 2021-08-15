@@ -11,27 +11,33 @@ from music_cog import music_cog
 
 async def status_task():
   while True:
-      await asyncio.sleep(10)# 10 as in 10seconds
+      await asyncio.sleep(3)# 3 as in 3seconds
       await bot.change_presence(activity=discord.Game(name="Vợ Long"))
-      await asyncio.sleep(10)# 10 as in 10seconds
+      await asyncio.sleep(3)# 3 as in 3seconds
       await bot.change_presence(activity=discord.Game(name="Vợ Khánh"))
-      await asyncio.sleep(10)# 10 as in 10seconds
+      await asyncio.sleep(3)# 3 as in 3seconds
       await bot.change_presence(activity=discord.Game(name="Vợ An"))
-      await asyncio.sleep(10)# 10 as in 10seconds
+      await asyncio.sleep(3)# 3 as in 3seconds
       await bot.change_presence(activity=discord.Game(name="Vợ Been"))
-      await asyncio.sleep(10)# 10 as in 10seconds
+      await asyncio.sleep(3)# 3 as in 3seconds
       await bot.change_presence(activity=discord.Game(name="Vợ Cường"))
-      # await asyncio.sleep(10)
-      # await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.competing, name=f"competing status"))
-      # await asyncio.sleep(10)
-      # await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.streaming, name=f"streaming status"))
-      # await asyncio.sleep(10)
+      await asyncio.sleep(3)# 3 as in 3seconds
+      await bot.change_presence(activity=discord.Game(name="Vợ Quân"))
+      await asyncio.sleep(3)# 3 as in 3seconds
+      await bot.change_presence(activity=discord.Game(name="Vợ Hải"))
+      await asyncio.sleep(3)# 3 as in 3seconds
+      await bot.change_presence(activity=discord.Game(name="Vợ Tài"))
+      await asyncio.sleep(3)# 3 as in 3seconds
+      await bot.change_presence(activity=discord.Game(name="Vợ Bi"))
+      await asyncio.sleep(3)# 3 as in 3seconds
+      await bot.change_presence(activity=discord.Game(name="Vợ Thắng"))
+      await asyncio.sleep(3)# 3 as in 3seconds
+      await bot.change_presence(activity=discord.Game(name="Vợ Shi"))
 
 bot = commands.Bot(command_prefix='>')
 
 @bot.event
 async def on_ready():
-  # await bot.change_presence(status=discord.Status.idle,activity=discord.Game('Đợi >'))
   bot.loop.create_task(status_task())
   print('ahahhhh vào rồi!!!')
 

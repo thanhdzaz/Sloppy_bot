@@ -8,13 +8,13 @@ class main_cog(commands.Cog):
 ```
 Danh sách lệnh:
 >help - Hiển thị toàn bộ command
->clear .... - Xóa tin nhắn theo số lượng
 >avatar hiển thị avatar người được tag
->chui - giúp bạn chửi người được tag
 Nhạc nè:
 >n ..... - Tìm nhạc
 >ds - Danh sách nhạc
 >next - Next bài
+>dung - Tạm dừng
+>tiep - Tiếp tục
 >vao - Kết nối vào voice
 >ra - Ra khỏi kênh
 Nói nè: 

@@ -16,15 +16,12 @@ class music_cog(commands.Cog):
         # 2d array containing [song, channel]
         self.music_queue = []
         self.YDL_OPTIONS = {
-          'format': 'bestaudio/best',
+          'format': 'bestaudio',
           'extractaudio': True,
           'audioformat': 'mp3',
           'outtmpl': '%(extractor)s-%(id)s-%(title)s.%(ext)s',
           'restrictfilenames': True,
-          'noplaylist': True,
           'nocheckcertificate': True,
-          'ignoreerrors': False,
-          'logtostderr': False,
           'quiet': True,
           'no_warnings': True,
           'default_search': 'auto',
@@ -116,28 +113,32 @@ class music_cog(commands.Cog):
             self.vc.stop()
             #try to play next in the queue if it exists
             await self.play_music()
-    @commands.command(name="tamdung", help="Next bài")
+    @commands.command(name="dung", help="Next bài")
     async def pause(self, ctx):
         if self.vc != "" and self.vc:
             self.vc.pause()
+            emoji = discord.utils.get(ctx.guild.emojis, name="ok_hand")
+            await ctx.message.add_reaction(emoji)
             #try to play next in the queue if it exists
             # await self.play_music()
     @commands.command(name="tiep", help="Next bài")
     async def tiep(self, ctx):
         if self.vc != "" and self.vc:
             self.vc.resume()
+            emoji = discord.utils.get(ctx.guild.emojis, name="ok_hand")
+            await ctx.message.add_reaction(emoji)
             #try to play next in the queue if it exists
             # await self.play_music()
     @commands.command(name="ra", help="Next bài")
     async def leave(self,ctx):
-        emoji = discord.utils.get(ctx.guild.emojis, name="Scare")
-        await ctx.message.add_reaction(emoji)
+        # emoji = discord.utils.get(ctx.guild.emojis, name="Scare")
+        # await ctx.message.add_reaction(emoji)
         await ctx.voice_client.disconnect()
     @commands.command(name="vao", help="Next bài")
     async def join(self,ctx):
         channel = ctx.author.voice.channel
-        emoji = discord.utils.get(ctx.guild.emojis, name="meo")
-        await ctx.message.add_reaction(emoji)
+        # emoji = discord.utils.get(ctx.guild.emojis, name="meo")
+        # await ctx.message.add_reaction(emoji)
         self.vc = await channel.connect()
 
     @commands.command(name='noi',pass_context=True)
@@ -150,9 +151,9 @@ class music_cog(commands.Cog):
           else:
               await self.vc.play(discord.FFmpegPCMAudio(f"./music/{request}.mp3"), after=lambda e: print('done'))
         elif request == '-all':
-          await ctx.send('***Danh sách***```70tuoi, ban, bopdi, camgiac, cay, devl, locc, dcm, que, tobecontinue, cekt,thamlam, ngudot, concainit, zo, votay, deo, emoi```')
+          await ctx.send('***Danh sách***```70tuoi, ban, bopdi, camgiac, cay, devl, locc, dcm, que, tobecontinue, cekt,thamlam, ngudot, concainit, zo, votay, deo, emoi, bmsq, haha, aotuong, diena, tinchu, vcl, yeuvoiduong, metraimetrai, diachi, diachi2, doicc , immom, anhbana, oibanoi, khonglam, lay, nhatban, trandan, aothat```')
         else:
-          await ctx.send(f'{request} không tồn tại sử dụng lệnh ```>noi -all``` để nhận danh sách')
+          await ctx.send(f'Ơ kìa cái {request} này không tồn tại hãy sử dụng lệnh ```>noi -all``` để nhận danh sách')
 
 
     @commands.command(name='t',pass_context=True)
