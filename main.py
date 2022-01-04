@@ -12,12 +12,6 @@ from music_cog import music_cog
 async def status_task():
   while True:
       await asyncio.sleep(3)# 3 as in 3seconds
-      await bot.change_presence(activity=discord.Game(name="Vợ Long"))
-      await asyncio.sleep(3)# 3 as in 3seconds
-      await bot.change_presence(activity=discord.Game(name="Vợ Khánh"))
-      await asyncio.sleep(3)# 3 as in 3seconds
-      await bot.change_presence(activity=discord.Game(name="Vợ An"))
-      await asyncio.sleep(3)# 3 as in 3seconds
       await bot.change_presence(activity=discord.Game(name="Vợ Been"))
       await asyncio.sleep(3)# 3 as in 3seconds
       await bot.change_presence(activity=discord.Game(name="Vợ Cường"))

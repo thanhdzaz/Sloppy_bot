@@ -49,7 +49,8 @@ Nói nè:
 
     @commands.command(name='check', help='Check trạng thái bot.')
     async def check(self,ctx):
-      await ctx.send('Còn sống nhăn răng nhé 🤩')
+      await ctx.send(f'Ping Bot hiện tại là {round (self.bot.latency * 1000)}ms')
+      # print(self)
     @commands.command(nam='avatar',help='Xem avatar người gọi.')
     async def avatar(self, ctx, *,  avamember : discord.Member=None):
       if avamember :

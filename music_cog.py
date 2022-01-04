@@ -131,40 +131,62 @@ class music_cog(commands.Cog):
             # await self.play_music()
     @commands.command(name="ra", help="Next bài")
     async def leave(self,ctx):
-        # emoji = discord.utils.get(ctx.guild.emojis, name="Scare")
-        # await ctx.message.add_reaction(emoji)
+        emoji = discord.utils.get(ctx.guild.emojis, name="EnpKypPWEAERxi8")
+        await ctx.message.add_reaction(emoji)
         await ctx.voice_client.disconnect()
     @commands.command(name="vao", help="Next bài")
     async def join(self,ctx):
         channel = ctx.author.voice.channel
-        # emoji = discord.utils.get(ctx.guild.emojis, name="meo")
-        # await ctx.message.add_reaction(emoji)
+        emoji = discord.utils.get(ctx.guild.emojis, name="FischlDab")
+        await ctx.message.add_reaction(emoji)
         self.vc = await channel.connect()
 
     @commands.command(name='noi',pass_context=True)
     async def devl(self,ctx, *, request):
+        # channel = ctx.author.voice.channel
         channel = ctx.author.voice.channel
-        if os.path.exists(f"./music/{request}.mp3"):
-          if self.vc == "" or not self.vc.is_connected() or self.vc == None:
-              self.vc = await channel.connect()
-              self.vc.play(discord.FFmpegPCMAudio(f"./music/{request}.mp3"), after=lambda e: print('done'))
-          else:
-              await self.vc.play(discord.FFmpegPCMAudio(f"./music/{request}.mp3"), after=lambda e: print('done'))
-        elif request == '-all':
-          await ctx.send('***Danh sách***```70tuoi, ban, bopdi, camgiac, cay, devl, locc, dcm, que, tobecontinue, cekt,thamlam, ngudot, concainit, zo, votay, deo, emoi, bmsq, haha, aotuong, diena, tinchu, vcl, yeuvoiduong, metraimetrai, diachi, diachi2, doicc , immom, anhbana, oibanoi, khonglam, lay, nhatban, trandan, aothat```')
+        if not channel:
+
+            await ctx.send('Vào 1 kênh để gọi lệnh nha !!')
+            return
         else:
-          await ctx.send(f'Ơ kìa cái {request} này không tồn tại hãy sử dụng lệnh ```>noi -all``` để nhận danh sách')
+            if os.path.exists(f"./music/{request}.mp3"):
+              emoji = discord.utils.get(ctx.guild.emojis,name="Tom_and_Jerry_meme")
+              await ctx.message.add_reaction(emoji)
+              if self.vc == "" or not self.vc.is_connected() or self.vc == None:
+                self.vc = await channel.connect()
+                self.vc.play(discord.FFmpegPCMAudio(f"./music/{request}.mp3"), after=lambda e: print('done'))
+              else:
+                await self.vc.play(discord.FFmpegPCMAudio(f"./music/{request}.mp3"), after=lambda e: print('done'))
+            elif request == '-all':
+              await ctx.send('***Danh sách***```70tuoi, ban, bopdi, camgiac, cay, devl, locc, dcm, que, tobecontinue, cekt, thamlam, ngudot, concainit, zo, votay, deo, emoi, bmsq, haha, aotuong, diena, tinchu, vcl, yeuvoiduong, metrai, diachi, diachi2, doicc , immom, anhbana, oibanoi, khonglam, lay, nhatban, trandan, aothat, meomeo, ngu, xinloi, vinhbiet, bocphet, onichan, ehe, yamete, uwu, nghien, squid, hentai, contrai, o, ham, khoai, ragiday, 10d, mau ```')
+            else:
+              emoji = discord.utils.get(ctx.guild.emojis,name="Tom_and_Jerry_meme")
+              await ctx.message.add_reaction(emoji)
+              await ctx.send(f'Ơ kìa cái {request} này không tồn tại hãy sử dụng lệnh ```>noi -all``` để nhận danh sách')
 
 
     @commands.command(name='t',pass_context=True)
     async def t(self,ctx, *, request):
+        user_channel = ctx.message.author.voice.channel
+        print(user_channel)
+        if(ctx.bot.voice_clients != []):
+          bot_channel =   ctx.bot.voice_clients[0].channel
+          print(bot_channel)
+        emoji = discord.utils.get(ctx.guild.emojis, name="BarbaraLove")
+        await ctx.message.add_reaction(emoji)
         global gTTS
         speech = gTTS(text = request, lang = 'vi', slow=False)
         speech.save('audio.mp3')
         channel = ctx.author.voice.channel
+        
         if self.vc == "" or not self.vc.is_connected() or self.vc == None:
             self.vc = await channel.connect()
             self.vc.play(discord.FFmpegPCMAudio('audio.mp3'), after=lambda e: print('done'))
+           
         else:
-            await self.vc.play(discord.FFmpegPCMAudio('audio.mp3'), after=lambda e: print('done'))
-
+            if channel and user_channel == bot_channel:
+              await self.vc.play(discord.FFmpegPCMAudio('audio.mp3'), after=lambda e: print('done'))
+            else:
+              await ctx.send(f'Bot đang chỗ khác kênh `{bot_channel}`')
+        
