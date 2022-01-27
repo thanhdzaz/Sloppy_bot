@@ -159,7 +159,7 @@ class music_cog(commands.Cog):
               else:
                 await self.vc.play(discord.FFmpegPCMAudio(f"./music/{request}.mp3"), after=lambda e: print('done'))
             elif request == '-all':
-              await ctx.send('***Danh sách***```70tuoi, ban, bopdi, camgiac, cay, devl, locc, dcm, que, tobecontinue, cekt, thamlam, ngudot, concainit, zo, votay, deo, emoi, bmsq, haha, aotuong, diena, tinchu, vcl, yeuvoiduong, metrai, diachi, diachi2, doicc , immom, anhbana, oibanoi, khonglam, lay, nhatban, trandan, aothat, meomeo, ngu, xinloi, vinhbiet, bocphet, onichan, ehe, yamete, uwu, nghien, squid, hentai, contrai, o, ham, khoai, ragiday, 10d, mau ```')
+              await ctx.send('***Danh sách***```70tuoi, ban, bopdi, camgiac, cay, devl, locc, dcm, que, tobecontinue, cekt, thamlam, ngudot, concainit, zo, votay, deo, emoi, bmsq, haha, aotuong, diena, tinchu, vcl, yeuvoiduong, metrai, diachi, diachi2, doicc , immom, anhbana, oibanoi, khonglam, lay, nhatban, trandan, aothat, meomeo, ngu, xinloi, vinhbiet, bocphet, onichan, ehe, yamete, uwu, nghien, squid, hentai, contrai, o, ham, khoai, ragiday, 10d, mau, 26, conginuadau, kinh  ```')
             else:
               emoji = discord.utils.get(ctx.guild.emojis,name="Tom_and_Jerry_meme")
               await ctx.message.add_reaction(emoji)
