@@ -176,7 +176,7 @@ class music_cog(commands.Cog):
         emoji = discord.utils.get(ctx.guild.emojis, name="BarbaraLove")
         await ctx.message.add_reaction(emoji)
         global gTTS
-        speech = gTTS(text = request, lang = 'vi', slow=False)
+        speech = gTTS(text = request, lang = 'vi', slow=True)
         speech.save('audio.mp3')
         channel = ctx.author.voice.channel
         
